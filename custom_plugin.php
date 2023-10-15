@@ -15,7 +15,7 @@
  }
 
  function adminPage() {
-    add_options_page(1, 2, 3, 4, 5);
+    add_options_page('Word Count Settings', 'Word Count', 'manage options', 'word-count-settings-page', 5);
  }
 
  add_filter( 'auto_update_plugin', '__return_true' );
