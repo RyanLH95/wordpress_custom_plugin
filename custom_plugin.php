@@ -14,8 +14,14 @@
     }
  }
 
- function adminPage() {
-    add_options_page('Word Count Settings', 'Word Count', 'manage options', 'word-count-settings-page', 5);
+ function adminPage() { // first argument is for title of page, second is name of settings,
+    add_options_page('Word Count Settings', 'Word Count', 'manage options', 'word-count-settings-page', array($this, pluginHTML));
  }
+
+ function pluginHTML() { ?>
+    <div name="wrap">
+      <h1>Word Count Settings</h1>
+    </div>
+ <?php }
 
  add_filter( 'auto_update_plugin', '__return_true' );
