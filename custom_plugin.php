@@ -23,7 +23,22 @@
       
       add_settings_field('wcp_headline', 'Headline Text', array($this, 'headlineHTML'), 'word-count-settings-page', 'wcp_first_section', array('theName' => 'wcp_headline')); // create 5 arguments
       register_setting('wordcountplugin', 'wcp_headline', array('sanitize_callback' => 'sanitize_text_field', 'default' => 'Post Statistics'));
+
+      add_settings_field('wcp_wordcount', 'Word Count', array($this, 'wordcountHTML'), 'word-count-settings-page', 'wcp_first_section', array('theName' => 'wcp_wordcount')); // create 5 arguments
+      register_setting('wordcountplugin', 'wcp_headline', array('sanitize_callback' => 'sanitize_text_field', 'default' => '1'));
+
+      add_settings_field('wcp_charactercount', 'Character Count', array($this, 'charactercountHTML'), 'word-count-settings-page', 'wcp_first_section', array('theName' => 'wcp_charactercount')); // create 5 arguments
+      register_setting('wordcountplugin', 'wcp_charactercount', array('sanitize_callback' => 'sanitize_text_field', 'default' => '1'));
+
+      add_settings_field('wcp_readtime', 'Read Time', array($this, 'readtimeHTML'), 'word-count-settings-page', 'wcp_first_section', array('theName' => 'wcp_readtime')); // create 5 arguments
+      register_setting('wordcountplugin', 'wcp_readtime', array('sanitize_callback' => 'sanitize_text_field', 'default' => '1'));
    }
+
+   function checkboxHTML($args) { ?>
+      <input type="checkbox" 
+             name="<?php echo $args['theName'] ?>" 
+             value="1" <?php checked(get_options($args['theName']), '1') ?>>
+    <?php }
    
    // function for displaying the name of headline for word count, character count and read time
    function headlineHTML() { ?>
@@ -57,5 +72,7 @@
 
  // to create a new instance of class above
  $WordCountAndTimePlugin = new WordCountAndTimePlugin();
+
+ add_filter( 'auto_update_plugin', '__return_true' );
 
  
