@@ -17,9 +17,14 @@
 
  // This function is responsible for adding custom setting to database
  function settings() {
-
+   add_settings_field('wcp_location', 'Display Location', array($this, 'locationHTML'), 'word-count-settings-page', 'wcp_first_section', array('theName' => 'wcp_location')); // create 5 arguments
+   register_setting('wordcountplugin', 'wcp_location', array('sanitize_callback' => array($this, 'sanitizeLocation'), 'default' => '0'));
  }
 
+ function locationHTML(){
+
+ }
+ 
  function adminPage() { // first argument is for title of page, second is name of settings,
     add_options_page('Word Count Settings', 'Word Count', 'manage options', 'word-count-settings-page', array($this, pluginHTML));
  }
