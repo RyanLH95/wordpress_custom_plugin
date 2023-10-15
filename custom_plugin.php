@@ -40,7 +40,7 @@
         <form action="options.php" method="POST"></form>
         <?php
           settings_fields('wordcountplugin');
-          do_settings_selections('word-count-settings-page');
+          do_settings_sections('word-count-settings-page');
           submit_button();
         ?>
       </div>
@@ -50,4 +50,4 @@
  // to create a new instance of class above
  $WordCountAndTimePlugin = new WordCountAndTimePlugin();
 
- add_filter( 'auto_update_plugin', '__return_true' );
+ 
