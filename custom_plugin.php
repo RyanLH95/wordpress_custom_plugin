@@ -20,7 +20,14 @@
 
       add_settings_field('wcp_location', 'Display Location', array($this, 'locationHTML'), 'word-count-settings-page', 'wcp_first_section', array('theName' => 'wcp_location')); // create 5 arguments
       register_setting('wordcountplugin', 'wcp_location', array('sanitize_callback' => array($this, 'sanitizeLocation'), 'default' => '0'));
+      
+      add_settings_field('wcp_headline', 'Headline Text', array($this, 'headlineHTML'), 'word-count-settings-page', 'wcp_first_section', array('theName' => 'wcp_headline')); // create 5 arguments
+      register_setting('wordcountplugin', 'wcp_headline', array('sanitize_callback' => 'sanitize_text_field', 'default' => 'Post Statistics'));
    }
+
+   function headlineHTML() { ?>
+
+   <?php }
 
    function locationHTML() { ?>
      <select name="wcp_location">
