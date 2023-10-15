@@ -21,10 +21,13 @@
    register_setting('wordcountplugin', 'wcp_location', array('sanitize_callback' => array($this, 'sanitizeLocation'), 'default' => '0'));
  }
 
- function locationHTML(){
+ function locationHTML() { ?>
+   <select name="wcp_location">
+     <option value="0"<?php selected(get_option('wcp_location'), '0') ?>>Beginning of post</option>
+     <option value="1"<?php selected(get_option('wcp_location'), '1') ?>>End of post</option>
+   </select>
+ <?php }
 
- }
- 
  function adminPage() { // first argument is for title of page, second is name of settings,
     add_options_page('Word Count Settings', 'Word Count', 'manage options', 'word-count-settings-page', array($this, pluginHTML));
  }
