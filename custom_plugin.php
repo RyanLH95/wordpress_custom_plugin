@@ -28,6 +28,35 @@
       return $content;
     }
 
+    // Responsible for showing information on actual website/blog post
+  function createHTML($content) {
+   $html = '<h3>' . esc_html(get_option('wcp_headline', 'Post Statistics')) . '</h3><p>';
+
+   // get word count once because both wordcount and read time will need it.
+   if (get_option('wcp_wordcount', '1') OR get_option('wcp_readtime', '1')) {
+   $wordCount = str_word_count(strip_tags($content)); 
+   }
+
+   if (get_option('wcp_wordcount', '1')) {
+       $html .= 'This post has ' . $wordCount . ' words.<br>';
+     }
+
+   if (get_option('wcp_charactercount', '1')) {
+     $html .= 'This post has ' . strlen(strip_tags($content)) . ' characters.<br>';
+   }
+   // if statement for how long the blog/article will take to read
+   if (get_option('wcp_readtime', '1')) {
+       $html .= 'This post will take about ' . $wordCount . ' minute(s) to read.<br>'; // Or you can use the round($wordCount/225)
+     }
+
+   $html .= '</p>';
+   
+   if (get_option('wcp_location', '0') == '0') {
+     return $html . $content;
+   }
+   return $content . $html;
+ }
+
  // This function is responsible for adding custom setting to database
     function settings() {
       add_settings_section('wcp_first_section', null, null, 'word-count-settings-page');
