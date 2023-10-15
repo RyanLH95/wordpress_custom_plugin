@@ -12,6 +12,20 @@
     function __construct() {
         add_action('admin_menu', array($this, 'adminPage'));
         add_action('admin_init', array($this, 'settings'));
+        add_filter('the_content', array($this, 'ifWrap'));
+    }
+
+    function ifWrap($content) {
+      if (is_main_query() AND is_single() AND 
+        (
+          get_option('wcp_wordcount', '1') OR 
+          get_option('wcp_charactercount', '1') OR 
+          get_option('wcp_readtime', '1')
+        )) {
+          // if condition is met
+          return $this->createHTML($content); // Or you can use '
+      } // if condition is not met
+      return $content;
     }
 
  // This function is responsible for adding custom setting to database
