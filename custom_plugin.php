@@ -34,10 +34,25 @@
       register_setting('wordcountplugin', 'wcp_readtime', array('sanitize_callback' => 'sanitize_text_field', 'default' => '1'));
    }
 
+   /*
+   For the wordcount, charactercount and readtime HTML functions, you can use the following code:
+
+    function wordcountHTML() { ?>
+      <input type="checkbox" name="wcp_wordcount" value="1" <?php checked(get_option(wcp_wordcount, '1'))>
+    <?php }
+
+    function charactercountHTML() { ?>
+      <input type="checkbox" name="wcp_charactercount" value="1" <?php checked(get_option(wcp_charactercount, '1'))>
+    <?php }
+
+    function readtimeHTML() { ?>
+      <input type="checkbox" name="wcp_readtime" value="1" <?php checked(get_option(wcp_readtime, '1'))>
+    <?php }
+
+    for cleaner and easier reading code however, use code below
+   */
    function checkboxHTML($args) { ?>
-      <input type="checkbox" 
-             name="<?php echo $args['theName'] ?>" 
-             value="1" <?php checked(get_options($args['theName']), '1') ?>>
+      <input type="checkbox" name="<?php echo $args['theName'] ?>" value="1" <?php checked(get_options($args['theName']), '1') ?>>
     <?php }
    
    // function for displaying the name of headline for word count, character count and read time
